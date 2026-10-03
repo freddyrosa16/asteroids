@@ -7,18 +7,25 @@ def main():
     # Initializing  pygame
     pygame.init()
 
+    # FPS
+    clock = pygame.time.Clock()
+    dt = 0.0
+
     # Creating the GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     # Game loop
     while True:
         log_state()
+
         for event in pygame.event.get():
-            pygame.Surface.fill(screen, "black")
-            pygame.display.flip()
-    print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
+            if event.type == pygame.QUIT:
+                return
+
+        screen.fill("black")
+        pygame.display.flip()
+        dt = clock.tick(60) / 1000
+        print(dt)
 
 
 if __name__ == "__main__":
