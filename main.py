@@ -12,6 +12,13 @@ def main():
     clock = pygame.time.Clock()
     dt = 0.0
 
+    # Groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # Class
+    Player.containers = (updatable, drawable)
+
     # Creating the GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -27,7 +34,9 @@ def main():
                 return
 
         screen.fill("black")
-        player.draw(screen)
+        updatable.update(dt)
+        for obj in drawable:
+            obj.draw(screen)
         pygame.display.flip()
         dt = clock.tick(60) / 1000
         print(dt)

@@ -13,3 +13,6 @@ wheels/
 .env
 .env.*
 .DS_Store
+
+# Logs
+game_state.jsonl
